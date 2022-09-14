@@ -1,6 +1,6 @@
 const {connect, connection}= require('mongoose');
 
-const connectionString = 'mongodb://localhost/:27017/socailNetwork';
+const connectionString = 'mongodb://localhost/socialNetwork';
 
 //Wrap moongose around local connection to MongoDb
 connect(connectionString, {

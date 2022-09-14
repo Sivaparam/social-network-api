@@ -11,7 +11,7 @@ const userController = {
 
     //get single user by Id
     getUserById(req, res) {
-        User.findOne({ _id: req.params.userId })
+        User.findOne({ _id: req.params.id })
             .select('-__v')
             .then((user) =>
                 !user
@@ -29,7 +29,7 @@ const userController = {
 
     //delete a user
     deleteUserById(req, res) {
-        User.findOneAndDelete({ _id: req.params.userId })
+        User.findOneAndDelete({ _id: req.params.id })
             .then((user) =>
                 !user
                     ? res.status(404).json({ message: 'No user found with given Id' })
@@ -41,7 +41,7 @@ const userController = {
     //update user by id
     updateUserById(req, res) {
         User.findOneAndUpdate(
-            { _id: req.params.userId },
+            { _id: req.params.id },
             { $set: req.body },
             { runValidators: true, new: true }
         )
@@ -56,7 +56,7 @@ const userController = {
     //add a friend
     addFriend(req, res) {
         User.findOneAndUpdate(
-            { _id: req.params.userId },
+            { _id: req.params.id },
             { $push: { friends: params.friendId } },
             { new: true, runValidators: true })
             .then((friend) => res.json(friend))
@@ -66,7 +66,7 @@ const userController = {
     //delete a friend
     deleteFriend(req, res) {
         User.findOneAndUpdate(
-            { _id: req.params.userId },
+            { _id: req.params.id },
             { $pull: { friends: params.friendId } },
             { runValidators: true, new: true })
             .then((friend) => res.json(friend))

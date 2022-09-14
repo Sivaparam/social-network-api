@@ -1,5 +1,29 @@
 const { Schema, model } = require('mongoose');
 
+//schema for reaction
+const reactionSchema = new Schema(
+    {
+        reactionId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId(),
+        },
+        reactionBody: {
+            type: String,
+            required: true,
+            maxlength: 280,
+        },
+        username: {
+            type: String,
+            required: true,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now(),
+            get: (time) => format_date(time),
+        },
+    }
+);
+
 //schema to create a thought model
 const thoughtSchema = new Schema(
     {
@@ -28,34 +52,10 @@ const thoughtSchema = new Schema(
     }
 );
 
-//schema to get teh retrieve length of thought's reactions
-thoughtSchema.virtual('reactionCount').get(function() {
+//schema to retrieve length of thought's reactions
+thoughtSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
 });
-
-//schema for reaction
-const reactionSchema = new Schema (
-   {
-    reactionId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId(),
-    },
-    reactionBody: {
-        type: String,
-        required: true, 
-        maxlength: 280,
-    },
-    username: {
-        type: String,
-        required: true,
-    },
-    createdAt: {
-        type: Date, 
-        default: Date.now(),
-        get: (time) => format_date(time),
-    },
-   } 
-);
 
 const Thought = model('Thought', thoughtSchema);
 
