@@ -36,7 +36,7 @@ mpm install node
 ## Demo
 https://drive.google.com/file/d/1eJRZrS8V-gnIgeqvYM_h_KjoMOyM6iie/view
 
-* this demo shows 
+* additional  demo shows that explains below
 - how thought id is removed from users collection, when thought is deleted
 - how all associated thoughts are deleted when user is deleted
 https://drive.google.com/file/d/1W0_rQg7IlzJL5SKNLCZhERb9UdWfNEDi/view
