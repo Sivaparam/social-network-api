@@ -44,7 +44,7 @@ const thoughtController = {
                 !thought
                     ? res.status(404).json({ message: 'No thought found with given Id' })
                     : User.findOneAndUpdate(
-                        { _id: req.params.userId },
+                        { _id: req.body.userId },
                         { $pull: { thoughts: req.params.id } },
                         { new: true }))
                         .then(() => res.json(({ message: "thought deleted" })))
